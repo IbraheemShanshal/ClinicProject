@@ -1,4 +1,6 @@
-﻿namespace ClinicApp.userControls
+﻿using System.Windows.Forms;
+
+namespace ClinicApp.userControls
 {
     partial class Patients
     {
@@ -57,7 +59,7 @@
             // 
             // patientsDataGridView
             // 
-            patientsDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            patientsDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             patientsDataGridView.BackgroundColor = Color.White;
             patientsDataGridView.ColumnHeadersHeight = 34;
             patientsDataGridView.GridColor = SystemColors.MenuBar;
@@ -67,6 +69,8 @@
             patientsDataGridView.Size = new Size(956, 688);
             patientsDataGridView.TabIndex = 2;
             patientsDataGridView.CellContentClick += patientsDataGridView_CellContentClick;
+            patientsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
             // 
             // backBtn
             // 

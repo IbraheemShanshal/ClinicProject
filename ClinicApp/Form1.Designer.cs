@@ -171,6 +171,7 @@
             mainPanel.Name = "mainPanel";
             mainPanel.Size = new Size(1064, 845);
             mainPanel.TabIndex = 6;
+            mainPanel.Paint += mainPanel_Paint;
             // 
             // HomePage
             // 

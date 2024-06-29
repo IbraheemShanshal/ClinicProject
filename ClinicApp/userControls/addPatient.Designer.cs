@@ -36,7 +36,6 @@
             visitDatePicker = new DateTimePicker();
             btn_save = new Button();
             btn_clear = new Button();
-            btn_back = new Button();
             label_name = new Label();
             label_gender = new Label();
             label_contact = new Label();
@@ -110,6 +109,7 @@
             btn_save.TabIndex = 6;
             btn_save.Text = "Save";
             btn_save.UseVisualStyleBackColor = true;
+            btn_save.Click += btn_save_Click;
             // 
             // btn_clear
             // 
@@ -120,15 +120,6 @@
             btn_clear.TabIndex = 7;
             btn_clear.Text = "clear";
             btn_clear.UseVisualStyleBackColor = true;
-            // 
-            // btn_back
-            // 
-            btn_back.Location = new Point(59, 29);
-            btn_back.Name = "btn_back";
-            btn_back.Size = new Size(89, 31);
-            btn_back.TabIndex = 8;
-            btn_back.Text = "back";
-            btn_back.UseVisualStyleBackColor = true;
             // 
             // label_name
             // 
@@ -214,7 +205,6 @@
             Controls.Add(label_contact);
             Controls.Add(label_gender);
             Controls.Add(label_name);
-            Controls.Add(btn_back);
             Controls.Add(btn_clear);
             Controls.Add(btn_save);
             Controls.Add(visitDatePicker);
@@ -240,7 +230,6 @@
         private DateTimePicker visitDatePicker;
         private Button btn_save;
         private Button btn_clear;
-        private Button btn_back;
         private Label label_name;
         private Label label_gender;
         private Label label_contact;

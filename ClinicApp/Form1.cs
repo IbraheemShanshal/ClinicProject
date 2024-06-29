@@ -6,8 +6,9 @@ namespace ClinicApp
     public partial class HomePage : Form
     {
 
+
         userControls.addPatient addPatient = new userControls.addPatient();
-        userControls.Patients patients = new userControls.Patients(); 
+        userControls.Patients patients = new userControls.Patients();
         public HomePage()
         {
             InitializeComponent();
@@ -75,6 +76,11 @@ namespace ClinicApp
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mainPanel_Paint(object sender, PaintEventArgs e)
         {
 
         }
