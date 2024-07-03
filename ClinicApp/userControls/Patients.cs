@@ -36,23 +36,7 @@ namespace ClinicApp.userControls
 
         }
 
-        private void patientsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0) // Ensure a row is clicked, not the header
-            {
-                DataGridViewRow row = patientsDataGridView.Rows[e.RowIndex];
-
-                int patientId = Convert.ToInt32(row.Cells["Id"].Value);
-                string patientName = row.Cells["Name"].Value.ToString();
-                string gender = row.Cells["Gender"].Value.ToString();
-                bool referredFromOtherDoctors = Convert.ToBoolean(row.Cells["Referred"].Value);
-                string contactNumber = row.Cells["ContactNumber"].Value.ToString();
-                int age = Convert.ToInt32(row.Cells["Age"].Value);
-
-                // Load the PatientDetails user control with the selected patient data
-                LoadPatientDetails(patientId, patientName, gender, referredFromOtherDoctors, contactNumber, age);
-            }
-        }
+    
 
         private void searchText_TextChanged(object sender, EventArgs e)
         {
@@ -89,7 +73,7 @@ namespace ClinicApp.userControls
                 MessageBox.Show("Please select a patient to delete.", "Delete Patient", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-    
+
         private void LoadData(string searchTerm)
         {
             string query = "SELECT Id, Name, Gender, ReferredFromOtherDoctors, ContactNumber, Age FROM Patients";
@@ -151,6 +135,31 @@ namespace ClinicApp.userControls
             else
             {
                 MessageBox.Show("Failed to delete patient.");
+            }
+        }
+
+        private void patientsDataGridView_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if the click is on a valid cell and the cell is a button cell
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                DataGridView dataGridView = sender as DataGridView;
+
+                // Make sure dataGridView is not null
+                if (dataGridView != null && dataGridView.Columns[e.ColumnIndex] is DataGridViewButtonColumn)
+                {
+                    // Get the row and column values
+                    DataGridViewRow row = dataGridView.Rows[e.RowIndex];
+                    int patientId = Convert.ToInt32(row.Cells["Id"].Value);
+                    string patientName = row.Cells["Name"].Value.ToString();
+                    string gender = row.Cells["Gender"].Value.ToString();
+                    bool referredFromOtherDoctors = Convert.ToBoolean(row.Cells["Referred"].Value);
+                    string contactNumber = row.Cells["ContactNumber"].Value.ToString();
+                    int age = Convert.ToInt32(row.Cells["Age"].Value);
+
+                    // Load the PatientDetails user control with the selected patient data
+                    LoadPatientDetails(patientId, patientName, gender, referredFromOtherDoctors, contactNumber, age);
+                }
             }
         }
     }

@@ -33,6 +33,7 @@ namespace ClinicApp.userControls
             searchText = new TextBox();
             deleteBtn = new Button();
             patientsDataGridView = new DataGridView();
+            openButtonColumn = new DataGridViewButtonColumn();
             refreshBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)patientsDataGridView).BeginInit();
             SuspendLayout();
@@ -64,13 +65,22 @@ namespace ClinicApp.userControls
             patientsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             patientsDataGridView.BackgroundColor = Color.White;
             patientsDataGridView.ColumnHeadersHeight = 34;
+            patientsDataGridView.Columns.AddRange(new DataGridViewColumn[] { openButtonColumn });
             patientsDataGridView.GridColor = SystemColors.MenuBar;
             patientsDataGridView.Location = new Point(58, 115);
             patientsDataGridView.Name = "patientsDataGridView";
             patientsDataGridView.RowHeadersWidth = 62;
             patientsDataGridView.Size = new Size(956, 688);
             patientsDataGridView.TabIndex = 2;
-            patientsDataGridView.CellContentClick += patientsDataGridView_CellContentClick;
+            patientsDataGridView.CellContentClick += patientsDataGridView_CellContentClick_1;
+            // 
+            // openButtonColumn
+            // 
+            openButtonColumn.HeaderText = "";
+            openButtonColumn.MinimumWidth = 8;
+            openButtonColumn.Name = "openButtonColumn";
+            openButtonColumn.Text = "Open";
+            openButtonColumn.UseColumnTextForButtonValue = true;
             // 
             // refreshBtn
             // 
@@ -87,7 +97,7 @@ namespace ClinicApp.userControls
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Linen;
+            BackColor = Color.PaleTurquoise;
             Controls.Add(refreshBtn);
             Controls.Add(searchText);
             Controls.Add(deleteBtn);
@@ -105,5 +115,6 @@ namespace ClinicApp.userControls
         private System.Windows.Forms.Button deleteBtn;
         private System.Windows.Forms.DataGridView patientsDataGridView;
         private Button refreshBtn;
+        private DataGridViewButtonColumn openButtonColumn;
     }
 }

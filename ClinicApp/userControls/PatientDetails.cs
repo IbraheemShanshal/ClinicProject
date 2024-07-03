@@ -12,6 +12,7 @@ namespace ClinicApp.userControls
 {
     public partial class PatientDetails : UserControl
     {
+        
         public PatientDetails()
         {
             InitializeComponent();
@@ -31,5 +32,14 @@ namespace ClinicApp.userControls
             referredLabel.Text = $"Referred: {(referredFromOtherDoctors ? "Yes" : "No")}";
             // Additional details can be set here
         }
+
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            Patients patients = new Patients();
+            HomePage mainForm = (HomePage)this.ParentForm;
+            mainForm.LoadUserControl(patients);
+        }
+        
+        
     }
 }

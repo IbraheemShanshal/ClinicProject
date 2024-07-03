@@ -2,15 +2,8 @@
 {
     partial class PatientDetails
     {
-        /// <summary> 
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,12 +13,6 @@
             base.Dispose(disposing);
         }
 
-        #region Component Designer generated code
-
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             detailsPanel = new Panel();
@@ -51,18 +38,16 @@
             detailsPanel.Controls.Add(genderLabel);
             detailsPanel.Controls.Add(contactLabel);
             detailsPanel.Controls.Add(dobLabel);
+            detailsPanel.Controls.Add(referredLabel);
             detailsPanel.Location = new Point(33, 106);
-            detailsPanel.Margin = new Padding(5, 6, 5, 6);
             detailsPanel.Name = "detailsPanel";
-            detailsPanel.Size = new Size(500, 288);
+            detailsPanel.Size = new Size(600, 200);
             detailsPanel.TabIndex = 0;
-            detailsPanel.Paint += detailsPanel_Paint;
             // 
             // idLabel
             // 
             idLabel.AutoSize = true;
             idLabel.Location = new Point(17, 19);
-            idLabel.Margin = new Padding(5, 0, 5, 0);
             idLabel.Name = "idLabel";
             idLabel.Size = new Size(120, 25);
             idLabel.TabIndex = 0;
@@ -71,8 +56,7 @@
             // nameLabel
             // 
             nameLabel.AutoSize = true;
-            nameLabel.Location = new Point(17, 77);
-            nameLabel.Margin = new Padding(5, 0, 5, 0);
+            nameLabel.Location = new Point(17, 54);
             nameLabel.Name = "nameLabel";
             nameLabel.Size = new Size(178, 25);
             nameLabel.TabIndex = 1;
@@ -81,8 +65,7 @@
             // genderLabel
             // 
             genderLabel.AutoSize = true;
-            genderLabel.Location = new Point(17, 135);
-            genderLabel.Margin = new Padding(5, 0, 5, 0);
+            genderLabel.Location = new Point(17, 89);
             genderLabel.Name = "genderLabel";
             genderLabel.Size = new Size(145, 25);
             genderLabel.TabIndex = 2;
@@ -91,8 +74,7 @@
             // contactLabel
             // 
             contactLabel.AutoSize = true;
-            contactLabel.Location = new Point(17, 192);
-            contactLabel.Margin = new Padding(5, 0, 5, 0);
+            contactLabel.Location = new Point(17, 124);
             contactLabel.Name = "contactLabel";
             contactLabel.Size = new Size(218, 25);
             contactLabel.TabIndex = 3;
@@ -101,8 +83,7 @@
             // dobLabel
             // 
             dobLabel.AutoSize = true;
-            dobLabel.Location = new Point(17, 250);
-            dobLabel.Margin = new Padding(5, 0, 5, 0);
+            dobLabel.Location = new Point(17, 159);
             dobLabel.Name = "dobLabel";
             dobLabel.Size = new Size(168, 25);
             dobLabel.TabIndex = 4;
@@ -111,59 +92,54 @@
             // referredLabel
             // 
             referredLabel.AutoSize = true;
-            referredLabel.Location = new Point(17, 308);
-            referredLabel.Margin = new Padding(5, 0, 5, 0);
+            referredLabel.Location = new Point(17, 194);
             referredLabel.Name = "referredLabel";
-            referredLabel.Size = new Size(220, 25);
+            referredLabel.Size = new Size(211, 25);
             referredLabel.TabIndex = 5;
             referredLabel.Text = "Referred: [ReferredStatus]";
             // 
             // addVisitButton
             // 
-            addVisitButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            addVisitButton.Location = new Point(33, 416);
-            addVisitButton.Margin = new Padding(5, 6, 5, 6);
+            addVisitButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            addVisitButton.Location = new Point(650, 106);
             addVisitButton.Name = "addVisitButton";
-            addVisitButton.Size = new Size(167, 58);
+            addVisitButton.Size = new Size(150, 50);
             addVisitButton.TabIndex = 1;
             addVisitButton.Text = "Add Visit";
             addVisitButton.UseVisualStyleBackColor = true;
             // 
             // visitsDataGridView
             // 
-            visitsDataGridView.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            visitsDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             visitsDataGridView.BackgroundColor = Color.White;
             visitsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            visitsDataGridView.GridColor = Color.White;
-            visitsDataGridView.Location = new Point(33, 512);
-            visitsDataGridView.Margin = new Padding(5, 6, 5, 6);
+            visitsDataGridView.Location = new Point(33, 316);
             visitsDataGridView.Name = "visitsDataGridView";
             visitsDataGridView.RowHeadersWidth = 62;
-            visitsDataGridView.Size = new Size(1000, 385);
+            visitsDataGridView.Size = new Size(800, 400);
             visitsDataGridView.TabIndex = 2;
             // 
             // btn_back
             // 
-            btn_back.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             btn_back.Location = new Point(33, 32);
             btn_back.Name = "btn_back";
-            btn_back.Size = new Size(89, 31);
-            btn_back.TabIndex = 9;
-            btn_back.Text = "back";
+            btn_back.Size = new Size(100, 40);
+            btn_back.TabIndex = 3;
+            btn_back.Text = "Back";
             btn_back.UseVisualStyleBackColor = true;
+            btn_back.Click += btn_back_Click;
             // 
             // PatientDetails
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Linen;
-            Controls.Add(btn_back);
-            Controls.Add(visitsDataGridView);
-            Controls.Add(addVisitButton);
+            BackColor = Color.PaleTurquoise;
             Controls.Add(detailsPanel);
-            Margin = new Padding(5, 6, 5, 6);
+            Controls.Add(addVisitButton);
+            Controls.Add(visitsDataGridView);
+            Controls.Add(btn_back);
             Name = "PatientDetails";
-            Size = new Size(1144, 934);
+            Size = new Size(900, 750);
             detailsPanel.ResumeLayout(false);
             detailsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)visitsDataGridView).EndInit();
@@ -179,10 +155,6 @@
         private System.Windows.Forms.Label referredLabel;
         private System.Windows.Forms.Button addVisitButton;
         private System.Windows.Forms.DataGridView visitsDataGridView;
-        private Button btn_back;
+        private System.Windows.Forms.Button btn_back;
     }
-
-        #endregion
-
-    }
-
+}
