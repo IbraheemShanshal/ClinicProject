@@ -34,6 +34,7 @@
             genderLabel = new Label();
             contactLabel = new Label();
             dobLabel = new Label();
+            referredLabel = new Label();
             addVisitButton = new Button();
             visitsDataGridView = new DataGridView();
             btn_back = new Button();
@@ -43,6 +44,7 @@
             // 
             // detailsPanel
             // 
+            detailsPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             detailsPanel.BackColor = Color.White;
             detailsPanel.Controls.Add(idLabel);
             detailsPanel.Controls.Add(nameLabel);
@@ -106,8 +108,19 @@
             dobLabel.TabIndex = 4;
             dobLabel.Text = "Date of Birth: [DOB]";
             // 
+            // referredLabel
+            // 
+            referredLabel.AutoSize = true;
+            referredLabel.Location = new Point(17, 308);
+            referredLabel.Margin = new Padding(5, 0, 5, 0);
+            referredLabel.Name = "referredLabel";
+            referredLabel.Size = new Size(220, 25);
+            referredLabel.TabIndex = 5;
+            referredLabel.Text = "Referred: [ReferredStatus]";
+            // 
             // addVisitButton
             // 
+            addVisitButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             addVisitButton.Location = new Point(33, 416);
             addVisitButton.Margin = new Padding(5, 6, 5, 6);
             addVisitButton.Name = "addVisitButton";
@@ -118,6 +131,7 @@
             // 
             // visitsDataGridView
             // 
+            visitsDataGridView.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             visitsDataGridView.BackgroundColor = Color.White;
             visitsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             visitsDataGridView.GridColor = Color.White;
@@ -130,7 +144,7 @@
             // 
             // btn_back
             // 
-            btn_back.Anchor = AnchorStyles.None;
+            btn_back.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             btn_back.Location = new Point(33, 32);
             btn_back.Name = "btn_back";
             btn_back.Size = new Size(89, 31);
@@ -162,6 +176,7 @@
         private System.Windows.Forms.Label genderLabel;
         private System.Windows.Forms.Label contactLabel;
         private System.Windows.Forms.Label dobLabel;
+        private System.Windows.Forms.Label referredLabel;
         private System.Windows.Forms.Button addVisitButton;
         private System.Windows.Forms.DataGridView visitsDataGridView;
         private Button btn_back;

@@ -63,6 +63,7 @@
             // 
             // combo_gender
             // 
+            combo_gender.DropDownStyle = ComboBoxStyle.DropDownList;
             combo_gender.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             combo_gender.FormattingEnabled = true;
             combo_gender.Location = new Point(403, 215);
@@ -120,6 +121,7 @@
             btn_clear.TabIndex = 7;
             btn_clear.Text = "clear";
             btn_clear.UseVisualStyleBackColor = true;
+            btn_clear.Click += btn_clear_Click;
             // 
             // label_name
             // 
@@ -192,6 +194,7 @@
             showID_label.Size = new Size(72, 25);
             showID_label.TabIndex = 17;
             showID_label.Text = "            ";
+            showID_label.Click += showID_label_Click;
             // 
             // addPatient
             // 

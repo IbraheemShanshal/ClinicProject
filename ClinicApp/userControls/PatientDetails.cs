@@ -21,5 +21,15 @@ namespace ClinicApp.userControls
         {
 
         }
+        public void SetPatientDetails(int id, string name, string gender, bool referredFromOtherDoctors, string contactNumber, int age)
+        {
+            idLabel.Text = "ID: " + id.ToString();
+            nameLabel.Text = "Name: " + name;
+            genderLabel.Text = "Gender: " + gender;
+            contactLabel.Text = "Contact: " + contactNumber;
+            dobLabel.Text = "Age: " + age.ToString();
+            referredLabel.Text = $"Referred: {(referredFromOtherDoctors ? "Yes" : "No")}";
+            // Additional details can be set here
+        }
     }
 }

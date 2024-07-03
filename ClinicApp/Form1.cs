@@ -13,6 +13,9 @@ namespace ClinicApp
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
+            patients.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(patients);
+
         }
 
         private void MinimizeButton_Click(object sender, EventArgs e)
@@ -24,6 +27,10 @@ namespace ClinicApp
         {
             if (this.WindowState == FormWindowState.Normal)
             {
+                Rectangle workingArea = Screen.GetWorkingArea(this);
+
+                // Maximize the window to the working area
+                this.MaximizedBounds = workingArea;
                 this.WindowState = FormWindowState.Maximized;
             }
             else
@@ -75,6 +82,12 @@ namespace ClinicApp
 
         }
 
+        public void LoadUserControl(UserControl userControl)
+        {
+            mainPanel.Controls.Clear();
+            userControl.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(userControl);
+        }
         private void label1_Click(object sender, EventArgs e)
         {
 

@@ -31,9 +31,9 @@ namespace ClinicApp.userControls
         private void InitializeComponent()
         {
             searchText = new TextBox();
-            searchBtn = new Button();
+            deleteBtn = new Button();
             patientsDataGridView = new DataGridView();
-            backBtn = new Button();
+            refreshBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)patientsDataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -46,20 +46,22 @@ namespace ClinicApp.userControls
             searchText.TabIndex = 0;
             searchText.TextChanged += searchText_TextChanged;
             // 
-            // searchBtn
+            // deleteBtn
             // 
-            searchBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            searchBtn.BackColor = Color.White;
-            searchBtn.Location = new Point(837, 37);
-            searchBtn.Name = "searchBtn";
-            searchBtn.Size = new Size(177, 40);
-            searchBtn.TabIndex = 1;
-            searchBtn.Text = "Search";
-            searchBtn.UseVisualStyleBackColor = false;
+            deleteBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            deleteBtn.BackColor = Color.White;
+            deleteBtn.Location = new Point(837, 37);
+            deleteBtn.Name = "deleteBtn";
+            deleteBtn.Size = new Size(177, 40);
+            deleteBtn.TabIndex = 1;
+            deleteBtn.Text = "Delete";
+            deleteBtn.UseVisualStyleBackColor = false;
+            deleteBtn.Click += deleteBtn_Click;
             // 
             // patientsDataGridView
             // 
             patientsDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            patientsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             patientsDataGridView.BackgroundColor = Color.White;
             patientsDataGridView.ColumnHeadersHeight = 34;
             patientsDataGridView.GridColor = SystemColors.MenuBar;
@@ -69,27 +71,26 @@ namespace ClinicApp.userControls
             patientsDataGridView.Size = new Size(956, 688);
             patientsDataGridView.TabIndex = 2;
             patientsDataGridView.CellContentClick += patientsDataGridView_CellContentClick;
-            patientsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
             // 
-            // backBtn
+            // refreshBtn
             // 
-            backBtn.BackColor = Color.White;
-            backBtn.Location = new Point(58, 37);
-            backBtn.Name = "backBtn";
-            backBtn.Size = new Size(157, 36);
-            backBtn.TabIndex = 3;
-            backBtn.Text = "back";
-            backBtn.UseVisualStyleBackColor = false;
+            refreshBtn.BackColor = Color.White;
+            refreshBtn.Location = new Point(58, 37);
+            refreshBtn.Name = "refreshBtn";
+            refreshBtn.Size = new Size(157, 36);
+            refreshBtn.TabIndex = 3;
+            refreshBtn.Text = "Refresh";
+            refreshBtn.UseVisualStyleBackColor = false;
+            refreshBtn.Click += refreshBtn_Click;
             // 
             // Patients
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Linen;
-            Controls.Add(backBtn);
+            Controls.Add(refreshBtn);
             Controls.Add(searchText);
-            Controls.Add(searchBtn);
+            Controls.Add(deleteBtn);
             Controls.Add(patientsDataGridView);
             Name = "Patients";
             Size = new Size(1064, 845);
@@ -101,8 +102,8 @@ namespace ClinicApp.userControls
 
         #endregion
         private System.Windows.Forms.TextBox searchText;
-        private System.Windows.Forms.Button searchBtn;
+        private System.Windows.Forms.Button deleteBtn;
         private System.Windows.Forms.DataGridView patientsDataGridView;
-        private Button backBtn;
+        private Button refreshBtn;
     }
 }
