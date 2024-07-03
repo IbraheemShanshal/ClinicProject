@@ -109,6 +109,12 @@ namespace ClinicApp.userControls
 
                 // Optionally clear fields after saving
                 ClearFields();
+                PatientDetails patientDetails = new PatientDetails(GetLastInsertedPatientId());
+                patientDetails.SetPatientDetails(GetLastInsertedPatientId(), name, gender, referred, contact, age); // Adjust GetLastInsertedPatientId() to get the ID of the last inserted patient
+
+        // Load PatientDetails into HomePage
+        HomePage mainForm = (HomePage)this.ParentForm;
+        mainForm.LoadUserControl(patientDetails);
 
                 MessageBox.Show("Patient added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -122,6 +128,23 @@ namespace ClinicApp.userControls
             }
             ShowNextPatientID();
         }
+
+        private int GetLastInsertedPatientId()
+        {
+            int lastInsertedId = -1;
+            string query = "SELECT last_insert_rowid()"; // SQLite function to get last inserted row ID
+
+            DataTable dataTable = dataConnection.GetData(query);
+
+            if (dataTable.Rows.Count > 0 && dataTable.Rows[0][0] != DBNull.Value)
+            {
+                lastInsertedId = Convert.ToInt32(dataTable.Rows[0][0]);
+            }
+
+            return lastInsertedId;
+        }
+
+
         private void ClearFields()
         {
             text_name.Text = "";

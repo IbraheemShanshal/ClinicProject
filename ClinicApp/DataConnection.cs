@@ -1,5 +1,8 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
+using System.Data.SQLite;
 using System.Diagnostics;
+using System.IO;
 using Microsoft.Data.Sqlite;
 
 namespace ClinicApp
@@ -8,14 +11,12 @@ namespace ClinicApp
     {
         private string connectionString;
 
-
         public DataConnection()
         {
-                string dbRelativePath = @"Resources\Data\database.sqlite";
-                string dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, dbRelativePath);
-                connectionString = $"Data Source={dbPath}";
+            string dbRelativePath = @"Resources\Data\database.sqlite";
+            string dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, dbRelativePath);
+            connectionString = $"Data Source={dbPath}";
             //MessageBox.Show($"Database Path: {dbPath}"); // Show the database path for debug
-
         }
 
         public bool PatientNameExists(string name)
@@ -40,6 +41,7 @@ namespace ClinicApp
 
             return exists;
         }
+
         public int ExecuteQuery(string query, object parameters = null)
         {
             int rowsAffected = 0;
@@ -85,7 +87,6 @@ namespace ClinicApp
             return nextID;
         }
 
-
         public DataTable GetData(string query, string searchTerm = null)
         {
             DataTable dataTable = new DataTable();
@@ -110,7 +111,7 @@ namespace ClinicApp
             return dataTable;
         }
 
-        public void InsertPatient( string name, string gender, bool referredFromOtherDoctors, string contactNumber, int age)
+        public void InsertPatient(string name, string gender, bool referredFromOtherDoctors, string contactNumber, int age)
         {
             using (var connection = new SqliteConnection(connectionString))
             {
@@ -121,7 +122,7 @@ namespace ClinicApp
 
                     command.CommandText = @"INSERT INTO Patients (Id, Name, Gender, ReferredFromOtherDoctors, ContactNumber, Age)
                                             VALUES (@Id, @Name, @Gender, @ReferredFromOtherDoctors, @ContactNumber, @Age)";
-                    command.Parameters.AddWithValue("@Id",Id);
+                    command.Parameters.AddWithValue("@Id", Id);
                     command.Parameters.AddWithValue("@Name", name);
                     command.Parameters.AddWithValue("@Gender", gender);
                     command.Parameters.AddWithValue("@ReferredFromOtherDoctors", referredFromOtherDoctors ? 1 : 0); // Store boolean as 1 or 0
@@ -132,6 +133,56 @@ namespace ClinicApp
                     Debug.WriteLine($"InsertPatient Result: {result}");
                 }
             }
+        }
+
+        public void InsertVisit(int patientId, DateTime visitDate, string doctorNotes, string prescription)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+            {
+                conn.Open();
+                string query = "INSERT INTO Visits (PatientId, VisitDate, DoctorNotes, Prescription) " +
+                               "VALUES (@PatientId, @VisitDate, @DoctorNotes, @Prescription)";
+                using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@PatientId", patientId);
+                    cmd.Parameters.AddWithValue("@VisitDate", visitDate);
+                    cmd.Parameters.AddWithValue("@DoctorNotes", doctorNotes);
+                    cmd.Parameters.AddWithValue("@Prescription", prescription);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public DataTable GetDataVisit(string query, Dictionary<string, object> parameters = null)
+        {
+            DataTable dataTable = new DataTable();
+
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new SqliteCommand(query, connection))
+                {
+                    if (parameters != null)
+                    {
+                        foreach (var param in parameters)
+                        {
+                            command.Parameters.AddWithValue(param.Key, param.Value);
+                        }
+                    }
+
+                    using (SqliteDataReader reader = command.ExecuteReader())
+                    {
+                        dataTable.Load(reader);
+                    }
+                }
+            }
+
+            return dataTable;
+        }
+        public DataTable GetVisits(int patientId)
+        {
+            string query = "SELECT VisitDate FROM Visits WHERE PatientId = @PatientId";
+            var parameters = new Dictionary<string, object> { { "@PatientId", patientId } };
+            return GetDataVisit(query, parameters);
         }
     }
 }

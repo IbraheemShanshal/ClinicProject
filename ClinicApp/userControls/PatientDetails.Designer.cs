@@ -107,6 +107,7 @@
             addVisitButton.TabIndex = 1;
             addVisitButton.Text = "Add Visit";
             addVisitButton.UseVisualStyleBackColor = true;
+            addVisitButton.Click += addVisitButton_Click;
             // 
             // visitsDataGridView
             // 
@@ -118,6 +119,7 @@
             visitsDataGridView.RowHeadersWidth = 62;
             visitsDataGridView.Size = new Size(800, 400);
             visitsDataGridView.TabIndex = 2;
+            visitsDataGridView.CellContentClick += visitsDataGridView_CellContentClick;
             // 
             // btn_back
             // 

@@ -101,7 +101,7 @@ namespace ClinicApp.userControls
         }
         private void LoadPatientDetails(int id, string name, string gender, bool referredFromOtherDoctors, string contactNumber, int age)
         {
-            PatientDetails patientDetails = new PatientDetails();
+            PatientDetails patientDetails = new PatientDetails(id);
 
             // Set the patient details in the PatientDetails control
             patientDetails.SetPatientDetails(id, name, gender, referredFromOtherDoctors, contactNumber, age);
