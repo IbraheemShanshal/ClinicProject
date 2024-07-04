@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace ClinicApp.userControls
             patientId = id;
             dbConnection = new DataConnection();
             InitializeVisitsDataGridView();
+            LoadVisits(patientId);
 
         }
 
@@ -44,30 +46,7 @@ namespace ClinicApp.userControls
             HomePage mainForm = (HomePage)this.ParentForm;
             mainForm.LoadUserControl(patients);
         }
-        private void InitializeVisitsDataGridView()
-        {
-            visitsDataGridView.Columns.Clear();
-
-            // Add VisitDate column
-            DataGridViewTextBoxColumn visitDateColumn = new DataGridViewTextBoxColumn
-            {
-                Name = "visitDateColumn",
-                HeaderText = "Visit Date",
-                DataPropertyName = "VisitDate",
-                ReadOnly = true
-            };
-            visitsDataGridView.Columns.Add(visitDateColumn);
-
-            // Add Open Button column
-            DataGridViewButtonColumn openButtonColumn = new DataGridViewButtonColumn
-            {
-                Name = "openButtonColumn",
-                HeaderText = "Open",
-                Text = "Open",
-                UseColumnTextForButtonValue = true
-            };
-            visitsDataGridView.Columns.Add(openButtonColumn);
-        }
+        
         private void addVisitButton_Click(object sender, EventArgs e)
         {
             Visits visitControl = new Visits(patientId);
@@ -91,12 +70,45 @@ namespace ClinicApp.userControls
                 MessageBox.Show($"Visit Date: {visitDate}", "Visit Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void InitializeVisitsDataGridView()
+        {
+            visitsDataGridView.Columns.Clear();
+            visitsDataGridView.AllowUserToAddRows = false;
+
+            // Add VisitDate column
+            DataGridViewTextBoxColumn visitDateColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "visitDateColumn",
+                HeaderText = "Visit Date",
+                DataPropertyName = "VisitDate",
+                ReadOnly = true,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            };
+            visitsDataGridView.Columns.Add(visitDateColumn);
+
+            // Add Open Button column
+            DataGridViewButtonColumn openButtonColumn = new DataGridViewButtonColumn
+            {
+                Name = "openButtonColumn",
+                HeaderText = "Open",
+                Text = "Open",
+                UseColumnTextForButtonValue = true,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            };
+            visitsDataGridView.Columns.Add(openButtonColumn);
+        }
         public void LoadVisits(int patientId)
         {
             visitsDataGridView.Rows.Clear();
             try
             {
                 DataTable visits = dbConnection.GetVisits(patientId);
+                Debug.WriteLine($"Visits count: {visits.Rows.Count}");
+
+                // Sort the DataTable by VisitDate in descending order
+                visits.DefaultView.Sort = "VisitDate DESC";
+                visits = visits.DefaultView.ToTable();
 
                 foreach (DataRow row in visits.Rows)
                 {

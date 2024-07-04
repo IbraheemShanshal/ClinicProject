@@ -67,6 +67,7 @@
             prescriptionTextBox.Name = "prescriptionTextBox";
             prescriptionTextBox.Size = new Size(931, 216);
             prescriptionTextBox.TabIndex = 2;
+            prescriptionTextBox.TextChanged += prescriptionTextBox_TextChanged;
             // 
             // saveButton
             // 

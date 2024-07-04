@@ -68,5 +68,10 @@ namespace ClinicApp.userControls
                 }
             }
         }
+
+        private void prescriptionTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
