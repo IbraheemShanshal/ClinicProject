@@ -49,12 +49,13 @@ namespace ClinicApp.userControls
         
         private void addVisitButton_Click(object sender, EventArgs e)
         {
-            Visits visitControl = new Visits(patientId);
+            Visits visitControl = new Visits(patientId,dbConnection.GetLastVisitId());
             //visitControl.SetPatientId(patientId); // Pass the patient ID to the Visits user control
             visitControl.SetPreviousControl(this);
             HomePage mainForm = (HomePage)this.ParentForm;
             mainForm.LoadUserControl(visitControl);
         }
+
 
         private void visitsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -62,19 +63,34 @@ namespace ClinicApp.userControls
             if (e.RowIndex >= 0 && e.ColumnIndex == visitsDataGridView.Columns["openButtonColumn"].Index)
             {
                 // Handle button click action
-                // Example: Get the visit date of the clicked row
                 DataGridViewRow selectedRow = visitsDataGridView.Rows[e.RowIndex];
-                string visitDate = selectedRow.Cells["visitDateColumn"].Value.ToString();
+                int visitId = Convert.ToInt32(selectedRow.Cells["visitIdColumn"].Value);
 
-                // Example action: Show visit details in a MessageBox
-                MessageBox.Show($"Visit Date: {visitDate}", "Visit Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Open the visit details in the Visits user control
+                Visits visitControl = new Visits(patientId, visitId);
+                visitControl.SetPreviousControl(this);
+                HomePage mainForm = (HomePage)this.ParentForm;
+                mainForm.LoadUserControl(visitControl);
             }
         }
+
+
 
         private void InitializeVisitsDataGridView()
         {
             visitsDataGridView.Columns.Clear();
             visitsDataGridView.AllowUserToAddRows = false;
+
+            // Add VisitID column
+            DataGridViewTextBoxColumn visitIdColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "visitIdColumn",
+                HeaderText = "Visit ID",
+                DataPropertyName = "Id",
+                ReadOnly = true,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            };
+            visitsDataGridView.Columns.Add(visitIdColumn);
 
             // Add VisitDate column
             DataGridViewTextBoxColumn visitDateColumn = new DataGridViewTextBoxColumn
@@ -91,13 +107,15 @@ namespace ClinicApp.userControls
             DataGridViewButtonColumn openButtonColumn = new DataGridViewButtonColumn
             {
                 Name = "openButtonColumn",
-                HeaderText = "Open",
+                HeaderText = "",
                 Text = "Open",
                 UseColumnTextForButtonValue = true,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
             };
             visitsDataGridView.Columns.Add(openButtonColumn);
         }
+
+
         public void LoadVisits(int patientId)
         {
             visitsDataGridView.Rows.Clear();
@@ -112,8 +130,10 @@ namespace ClinicApp.userControls
 
                 foreach (DataRow row in visits.Rows)
                 {
+                    int visitId = Convert.ToInt32(row["Id"]);
                     DateTime visitDate = Convert.ToDateTime(row["VisitDate"]);
                     int rowIndex = visitsDataGridView.Rows.Add();
+                    visitsDataGridView.Rows[rowIndex].Cells["visitIdColumn"].Value = visitId.ToString();
                     visitsDataGridView.Rows[rowIndex].Cells["visitDateColumn"].Value = visitDate.ToShortDateString();
                 }
             }
@@ -122,5 +142,7 @@ namespace ClinicApp.userControls
                 MessageBox.Show($"Error loading visits: {ex.Message}");
             }
         }
+
+
     }
 }

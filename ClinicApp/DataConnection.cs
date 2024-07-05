@@ -152,6 +152,7 @@ namespace ClinicApp
                 }
             }
         }
+
         public DataTable GetDataVisit(string query, Dictionary<string, object> parameters = null)
         {
             DataTable dataTable = new DataTable();
@@ -178,11 +179,68 @@ namespace ClinicApp
 
             return dataTable;
         }
+        public int GetLastVisitId()
+        {
+            int lastVisitId = 0;
+            string query = "SELECT Id FROM Visits ORDER BY Id DESC LIMIT 1";
+
+            using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+            {
+                conn.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                {
+                    using (SQLiteDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            lastVisitId = Convert.ToInt32(reader["Id"]);
+                        }
+                    }
+                }
+            }
+
+            return lastVisitId;
+        }
         public DataTable GetVisits(int patientId)
         {
-            string query = "SELECT VisitDate FROM Visits WHERE PatientId = @PatientId";
-            var parameters = new Dictionary<string, object> { { "@PatientId", patientId } };
-            return GetDataVisit(query, parameters);
+            DataTable dt = new DataTable();
+            string query = "SELECT Id, VisitDate FROM Visits WHERE PatientID = @patientId";
+
+            using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+            {
+                conn.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@patientId", patientId);
+                    using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(cmd))
+                    {
+                        adapter.Fill(dt);
+                    }
+                }
+            }
+
+            return dt;
+        }
+
+        public DataRow GetVisitDetails(int visitId)
+        {
+            DataTable dt = new DataTable();
+            string query = "SELECT * FROM Visits WHERE Id = @visitId";
+
+            using (SQLiteConnection conn = new SQLiteConnection(connectionString))
+            {
+                conn.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@visitId", visitId);
+                    using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(cmd))
+                    {
+                        adapter.Fill(dt);
+                    }
+                }
+            }
+
+            return dt.Rows.Count > 0 ? dt.Rows[0] : null;
         }
     }
 }

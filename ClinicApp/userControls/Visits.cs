@@ -14,17 +14,31 @@ namespace ClinicApp.userControls
     {
         private DataConnection dataConnection;
         private int patientId;
-        public Visits(int id)
+        private int visitId;
+        public Visits(int id, int visitId)
         {
             InitializeComponent();
             dataConnection = new DataConnection();
             patientId = id;
+            this.visitId = visitId;
+            LoadVisitDetails();
         }
         private UserControl previousControl;
         // Method to set the previous control that needs to be navigated back to
         public void SetPreviousControl(UserControl control)
         {
             previousControl = control;
+        }
+        private void LoadVisitDetails()
+        {
+            // Load visit details based on visitId
+            DataRow visitRow = dataConnection.GetVisitDetails(visitId);
+            if (visitRow != null)
+            {
+                visitDatePicker.Value = Convert.ToDateTime(visitRow["VisitDate"]);
+                doctorNotesTextBox.Text = visitRow["DoctorNotes"].ToString();
+                prescriptionTextBox.Text = visitRow["Prescription"].ToString();
+            }
         }
         private void labelPrescription_Click(object sender, EventArgs e)
         {
