@@ -135,20 +135,24 @@ namespace ClinicApp
             }
         }
 
-        public void InsertVisit(int patientId, DateTime visitDate, string doctorNotes, string prescription)
+        public int InsertVisit(int patientId, DateTime visitDate, string doctorNotes, string prescription)
         {
             using (SQLiteConnection conn = new SQLiteConnection(connectionString))
             {
                 conn.Open();
                 string query = "INSERT INTO Visits (PatientId, VisitDate, DoctorNotes, Prescription) " +
-                               "VALUES (@PatientId, @VisitDate, @DoctorNotes, @Prescription)";
+                               "VALUES (@PatientId, @VisitDate, @DoctorNotes, @Prescription); " +
+                               "SELECT last_insert_rowid();";
                 using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@PatientId", patientId);
                     cmd.Parameters.AddWithValue("@VisitDate", visitDate);
                     cmd.Parameters.AddWithValue("@DoctorNotes", doctorNotes);
                     cmd.Parameters.AddWithValue("@Prescription", prescription);
-                    cmd.ExecuteNonQuery();
+
+                    // Execute the query and get the newly inserted visit ID
+                    int newVisitId = Convert.ToInt32(cmd.ExecuteScalar());
+                    return newVisitId;
                 }
             }
         }

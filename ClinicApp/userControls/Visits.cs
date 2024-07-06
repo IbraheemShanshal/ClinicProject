@@ -61,27 +61,32 @@ namespace ClinicApp.userControls
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            try
             {
-                try
-                {
-                    // Get values from UI elements
-                    DateTime visitDate = visitDatePicker.Value;
-                    string doctorNotes = doctorNotesTextBox.Text.Trim();
-                    string prescription = prescriptionTextBox.Text.Trim();
+                // Get values from UI elements
+                DateTime visitDate = visitDatePicker.Value;
+                string doctorNotes = doctorNotesTextBox.Text.Trim();
+                string prescription = prescriptionTextBox.Text.Trim();
 
-                    // Validate required fields (if necessary)
+                // Validate required fields (if necessary)
 
-                    // Insert visit data into database
-                    dataConnection.InsertVisit(patientId, visitDate, doctorNotes, prescription);
+                // Insert visit data into database and get the new visit ID
+                int newVisitId = dataConnection.InsertVisit(patientId, visitDate, doctorNotes, prescription);
 
-                    MessageBox.Show("Visit added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("Visit added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Reload the Visits control with the new visit ID
+                Visits visitControl = new Visits(patientId, newVisitId);
+                visitControl.SetPreviousControl(this);
+                HomePage mainForm = (HomePage)this.ParentForm;
+                mainForm.LoadUserControl(visitControl);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void prescriptionTextBox_TextChanged(object sender, EventArgs e)
         {

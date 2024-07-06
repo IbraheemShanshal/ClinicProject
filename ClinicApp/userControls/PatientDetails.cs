@@ -46,15 +46,15 @@ namespace ClinicApp.userControls
             HomePage mainForm = (HomePage)this.ParentForm;
             mainForm.LoadUserControl(patients);
         }
-        
+
         private void addVisitButton_Click(object sender, EventArgs e)
         {
-            Visits visitControl = new Visits(patientId,dbConnection.GetLastVisitId());
-            //visitControl.SetPatientId(patientId); // Pass the patient ID to the Visits user control
+            Visits visitControl = new Visits(patientId, -1); // Passing -1 for new visit
             visitControl.SetPreviousControl(this);
             HomePage mainForm = (HomePage)this.ParentForm;
             mainForm.LoadUserControl(visitControl);
         }
+
 
 
         private void visitsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
