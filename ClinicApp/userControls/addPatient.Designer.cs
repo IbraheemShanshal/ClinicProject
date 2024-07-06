@@ -50,6 +50,7 @@
             text_name.Name = "text_name";
             text_name.Size = new Size(566, 31);
             text_name.TabIndex = 0;
+            text_name.Font = new System.Drawing.Font("Segoe UI", 12F);
             // 
             // text_age
             // 
@@ -58,6 +59,7 @@
             text_age.Name = "text_age";
             text_age.Size = new Size(566, 31);
             text_age.TabIndex = 1;
+            text_age.Font = new System.Drawing.Font("Segoe UI", 12F);
             // 
             // combo_gender
             // 
@@ -69,6 +71,7 @@
             combo_gender.Size = new Size(566, 33);
             combo_gender.TabIndex = 2;
             combo_gender.SelectedIndexChanged += combo_gender_SelectedIndexChanged;
+            combo_gender.Font = new System.Drawing.Font("Segoe UI", 12F);
             // 
             // radio_referral
             // 
@@ -82,6 +85,7 @@
             radio_referral.Text = "referral";
             radio_referral.UseVisualStyleBackColor = true;
             radio_referral.CheckedChanged += radioButton1_CheckedChanged;
+            radio_referral.Font = new System.Drawing.Font("Segoe UI", 12F);
             // 
             // masked_contact
             // 
@@ -90,27 +94,35 @@
             masked_contact.Name = "masked_contact";
             masked_contact.Size = new Size(566, 31);
             masked_contact.TabIndex = 4;
+            masked_contact.Font = new System.Drawing.Font("Segoe UI", 12F);
             // 
             // btn_save
             // 
-            btn_save.Location = new Point(242, 624);
-            btn_save.Name = "btn_save";
-            btn_save.Size = new Size(148, 68);
-            btn_save.TabIndex = 6;
-            btn_save.Text = "Save";
-            btn_save.UseVisualStyleBackColor = true;
-            btn_save.Click += btn_save_Click;
+            this.btn_save.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_save.Location = new System.Drawing.Point(250, 450);
+            this.btn_save.Name = "btn_save";
+            this.btn_save.Size = new System.Drawing.Size(140, 45);
+            this.btn_save.TabIndex = 5;
+            this.btn_save.Text = "Save";
+            this.btn_save.UseVisualStyleBackColor = true;
+            this.btn_save.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btn_save.ForeColor = System.Drawing.Color.White;
+            this.btn_save.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             // 
             // btn_clear
             // 
-            btn_clear.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btn_clear.Location = new Point(529, 624);
-            btn_clear.Name = "btn_clear";
-            btn_clear.Size = new Size(148, 68);
-            btn_clear.TabIndex = 7;
-            btn_clear.Text = "clear";
-            btn_clear.UseVisualStyleBackColor = true;
-            btn_clear.Click += btn_clear_Click;
+            this.btn_clear.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_clear.Location = new System.Drawing.Point(410, 450);
+            this.btn_clear.Name = "btn_clear";
+            this.btn_clear.Size = new System.Drawing.Size(140, 45);
+            this.btn_clear.TabIndex = 6;
+            this.btn_clear.Text = "Clear";
+            this.btn_clear.UseVisualStyleBackColor = true;
+            this.btn_clear.BackColor = System.Drawing.Color.Crimson;
+            this.btn_clear.ForeColor = System.Drawing.Color.White;
+            this.btn_clear.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.btn_clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             // 
             // label_name
             // 
@@ -122,6 +134,7 @@
             label_name.TabIndex = 9;
             label_name.Text = "Name";
             label_name.Click += label1_Click;
+            label_name.Font = new System.Drawing.Font("Segoe UI", 12F);
             // 
             // label_gender
             // 
@@ -132,6 +145,7 @@
             label_gender.Size = new Size(69, 25);
             label_gender.TabIndex = 10;
             label_gender.Text = "Gender";
+            label_gender.Font = new System.Drawing.Font("Segoe UI", 12F);
             // 
             // label_contact
             // 
@@ -142,6 +156,7 @@
             label_contact.Size = new Size(143, 25);
             label_contact.TabIndex = 12;
             label_contact.Text = "Contact Number";
+            label_contact.Font = new System.Drawing.Font("Segoe UI", 12F);
             // 
             // label_age
             // 
@@ -152,6 +167,7 @@
             label_age.Size = new Size(44, 25);
             label_age.TabIndex = 14;
             label_age.Text = "Age";
+            label_age.Font = new System.Drawing.Font("Segoe UI", 12F);
             // 
             // label_ID
             // 
@@ -162,6 +178,7 @@
             label_ID.Size = new Size(30, 25);
             label_ID.TabIndex = 15;
             label_ID.Text = "ID";
+            label_ID.Font = new System.Drawing.Font("Segoe UI", 12F);
             // 
             // showID_label
             // 
@@ -173,6 +190,7 @@
             showID_label.Text = "            ";
             showID_label.TextAlign = ContentAlignment.MiddleCenter;
             showID_label.Click += showID_label_Click;
+            showID_label.Font = new System.Drawing.Font("Segoe UI", 9F);
             // 
             // addPatient
             // 

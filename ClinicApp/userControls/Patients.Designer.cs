@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace ClinicApp.userControls
+﻿namespace ClinicApp.userControls
 {
     partial class Patients
     {
@@ -41,22 +39,28 @@ namespace ClinicApp.userControls
             // searchText
             // 
             searchText.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            searchText.Location = new Point(241, 42);
+            searchText.Location = new Point(241, 37);
             searchText.Name = "searchText";
             searchText.Size = new Size(578, 31);
             searchText.TabIndex = 0;
+            searchText.Font = new Font("Segoe UI", 12F);
             searchText.TextChanged += searchText_TextChanged;
             // 
             // deleteBtn
             // 
             deleteBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            deleteBtn.BackColor = Color.White;
+            deleteBtn.BackColor = Color.Crimson;
+            deleteBtn.ForeColor = Color.White;
+            deleteBtn.FlatStyle = FlatStyle.Flat;
             deleteBtn.Location = new Point(837, 37);
             deleteBtn.Name = "deleteBtn";
             deleteBtn.Size = new Size(177, 40);
             deleteBtn.TabIndex = 1;
             deleteBtn.Text = "Delete";
             deleteBtn.UseVisualStyleBackColor = false;
+            deleteBtn.Font = new Font("Segoe UI", 12F);
+            deleteBtn.MouseEnter += deleteBtn_MouseEnter;
+            deleteBtn.MouseLeave += deleteBtn_MouseLeave;
             deleteBtn.Click += deleteBtn_Click;
             // 
             // patientsDataGridView
@@ -72,6 +76,7 @@ namespace ClinicApp.userControls
             patientsDataGridView.RowHeadersWidth = 62;
             patientsDataGridView.Size = new Size(956, 688);
             patientsDataGridView.TabIndex = 2;
+            patientsDataGridView.Font = new Font("Segoe UI", 12F);
             patientsDataGridView.CellContentClick += patientsDataGridView_CellContentClick_1;
             // 
             // openButtonColumn
@@ -84,13 +89,18 @@ namespace ClinicApp.userControls
             // 
             // refreshBtn
             // 
-            refreshBtn.BackColor = Color.White;
+            refreshBtn.BackColor = Color.LightSeaGreen;
+            refreshBtn.ForeColor = Color.White;
+            refreshBtn.FlatStyle = FlatStyle.Flat;
             refreshBtn.Location = new Point(58, 37);
             refreshBtn.Name = "refreshBtn";
-            refreshBtn.Size = new Size(157, 36);
+            refreshBtn.Size = new Size(177, 40);
             refreshBtn.TabIndex = 3;
             refreshBtn.Text = "Refresh";
             refreshBtn.UseVisualStyleBackColor = false;
+            refreshBtn.Font = new Font("Segoe UI", 12F);
+            refreshBtn.MouseEnter += refreshBtn_MouseEnter;
+            refreshBtn.MouseLeave += refreshBtn_MouseLeave;
             refreshBtn.Click += refreshBtn_Click;
             // 
             // Patients
@@ -110,10 +120,30 @@ namespace ClinicApp.userControls
             PerformLayout();
         }
 
+        private void deleteBtn_MouseEnter(object sender, EventArgs e)
+        {
+            deleteBtn.BackColor = Color.DarkRed;
+        }
+
+        private void deleteBtn_MouseLeave(object sender, EventArgs e)
+        {
+            deleteBtn.BackColor = Color.Crimson;
+        }
+
+        private void refreshBtn_MouseEnter(object sender, EventArgs e)
+        {
+            refreshBtn.BackColor = Color.Teal;
+        }
+
+        private void refreshBtn_MouseLeave(object sender, EventArgs e)
+        {
+            refreshBtn.BackColor = Color.LightSeaGreen;
+        }
+
         #endregion
-        private System.Windows.Forms.TextBox searchText;
-        private System.Windows.Forms.Button deleteBtn;
-        private System.Windows.Forms.DataGridView patientsDataGridView;
+        private TextBox searchText;
+        private Button deleteBtn;
+        private DataGridView patientsDataGridView;
         private Button refreshBtn;
         private DataGridViewButtonColumn openButtonColumn;
     }

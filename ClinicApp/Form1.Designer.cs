@@ -87,6 +87,7 @@
             // 
             addPatient_btn.BackColor = Color.Black;
             addPatient_btn.FlatStyle = FlatStyle.Flat;
+            addPatient_btn.FlatAppearance.BorderSize = 0;
             addPatient_btn.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
             addPatient_btn.ForeColor = SystemColors.ButtonHighlight;
             addPatient_btn.ImageAlign = ContentAlignment.MiddleLeft;
@@ -95,13 +96,17 @@
             addPatient_btn.Size = new Size(389, 121);
             addPatient_btn.TabIndex = 0;
             addPatient_btn.Text = "Add Patient";
-            addPatient_btn.UseVisualStyleBackColor = false;
+            addPatient_btn.UseVisualStyleBackColor = true;
             addPatient_btn.Click += addPatient_Click;
+            addPatient_btn.MouseEnter += addPatient_btn_MouseEnter;
+            addPatient_btn.MouseLeave += addPatient_btn_MouseLeave;
+
             // 
             // Patient_btn
             // 
             Patient_btn.BackColor = Color.Black;
             Patient_btn.FlatStyle = FlatStyle.Flat;
+            Patient_btn.FlatAppearance.BorderSize = 0;
             Patient_btn.Font = new Font("Yu Gothic UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Patient_btn.ForeColor = Color.WhiteSmoke;
             Patient_btn.Location = new Point(3, 446);
@@ -109,8 +114,11 @@
             Patient_btn.Size = new Size(389, 121);
             Patient_btn.TabIndex = 1;
             Patient_btn.Text = "Patients";
-            Patient_btn.UseVisualStyleBackColor = false;
+            Patient_btn.UseVisualStyleBackColor = true;
             Patient_btn.Click += searchPatient_Click;
+            Patient_btn.MouseEnter += Patient_btn_MouseEnter;
+            Patient_btn.MouseLeave += Patient_btn_MouseLeave;
+
             // 
             // pictureBox1
             // 
@@ -208,5 +216,25 @@
         private System.Windows.Forms.Button maximizeButton;
         private System.Windows.Forms.Button closeButton;
         private Panel mainPanel;
+
+        private void addPatient_btn_MouseEnter(object sender, EventArgs e)
+        {
+            addPatient_btn.BackColor = Color.Gray;
+        }
+
+        private void addPatient_btn_MouseLeave(object sender, EventArgs e)
+        {
+            addPatient_btn.BackColor = Color.Black;
+        }
+
+        private void Patient_btn_MouseEnter(object sender, EventArgs e)
+        {
+            Patient_btn.BackColor = Color.Gray;
+        }
+
+        private void Patient_btn_MouseLeave(object sender, EventArgs e)
+        {
+            Patient_btn.BackColor = Color.Black;
+        }
     }
 }
