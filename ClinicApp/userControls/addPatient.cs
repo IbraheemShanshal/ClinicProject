@@ -112,9 +112,9 @@ namespace ClinicApp.userControls
                 PatientDetails patientDetails = new PatientDetails(GetLastInsertedPatientId());
                 patientDetails.SetPatientDetails(GetLastInsertedPatientId(), name, gender, referred, contact, age); // Adjust GetLastInsertedPatientId() to get the ID of the last inserted patient
 
-        // Load PatientDetails into HomePage
-        HomePage mainForm = (HomePage)this.ParentForm;
-        mainForm.LoadUserControl(patientDetails);
+                // Load PatientDetails into HomePage
+                HomePage mainForm = (HomePage)this.ParentForm;
+                mainForm.LoadUserControl(patientDetails);
 
                 MessageBox.Show("Patient added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -164,5 +164,6 @@ namespace ClinicApp.userControls
         {
             ClearFields();
         }
+
     }
 }
